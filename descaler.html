@@ -15,17 +15,15 @@ body{
   color:white;
 }
 
-/* FIXED VIEWPORT FOR SANA */
 .viewport{
   width:100%;
-  height:420px;
+  height:430px;
   display:grid;
   place-items:center;
   overflow:hidden;
   background:#071118;
 }
 
-/* FRAME (VISIBLE AREA) */
 .frame{
   width:784px;
   height:392px;
@@ -34,26 +32,22 @@ body{
   border-radius:20px;
 }
 
-/* ORIGINAL SCENE (SCALED DOWN) */
 .scene{
   position:absolute;
-  top:0;
-  left:0;
+  top:50%;
+  left:50%;
   width:1120px;
   height:560px;
-
+  overflow:hidden;
+  border-radius:24px;
   background:
     radial-gradient(circle at 43% 22%,rgba(55,125,150,.32),transparent 34%),
     linear-gradient(#071118,#0d1d26 56%,#06090c);
-
   box-shadow:0 28px 80px rgba(0,0,0,.45);
-  border-radius:24px;
-
-  transform:scale(0.7);
-  transform-origin:top left;
+  transform:translate(-50%, -50%) scale(0.7);
+  transform-origin:center;
 }
 
-/* TITLE */
 .title{
   position:absolute;
   top:26px;
@@ -61,41 +55,47 @@ body{
   font-size:34px;
   font-weight:900;
   color:#ffc934;
+  text-transform:uppercase;
+  letter-spacing:.03em;
 }
 
-/* PRESSURE */
 .pressure{
   position:absolute;
   top:26px;
   padding:10px 16px;
   border-radius:12px;
-  border:1px solid rgba(255,255,255,.4);
+  border:1px solid rgba(255,255,255,.42);
   background:linear-gradient(#176180,#0d3349);
   font-size:15px;
   font-weight:700;
+  line-height:1.25;
   text-align:center;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
+  z-index:10;
 }
 
-.pressure strong{font-size:20px}
+.pressure strong{
+  font-size:20px;
+  color:white;
+}
 
 .rough{left:345px}
 .finish{right:115px}
 
-/* STAGES */
 .stage{
   position:absolute;
   top:96px;
   font-size:12px;
   font-weight:800;
   letter-spacing:.13em;
-  opacity:.7;
+  opacity:.72;
+  z-index:10;
 }
 
 .before{left:100px;color:#d6d6d6}
 .after-rough{left:485px;color:#bdeaff}
 .final{right:80px;color:#ffc934}
 
-/* ROLLERS */
 .rollers{
   position:absolute;
   left:42px;
@@ -103,17 +103,18 @@ body{
   bottom:88px;
   display:flex;
   justify-content:space-between;
+  z-index:1;
 }
 
 .rollers i{
   width:126px;
   height:48px;
   border-radius:50px;
-  background:radial-gradient(circle,#aeb7bd,#111417);
+  background:radial-gradient(circle at 35% 35%,#aeb7bd,#3a4046 48%,#111417 72%);
+  box-shadow:inset 0 0 12px rgba(255,255,255,.2),0 12px 22px rgba(0,0,0,.55);
   animation:roll .75s linear infinite;
 }
 
-/* STEEL */
 .steel{
   position:absolute;
   left:-760px;
@@ -122,63 +123,139 @@ body{
   height:145px;
   transform:skewX(-8deg);
   animation:steelPass 9s linear infinite;
+  z-index:2;
 }
 
 .hot-core{
   position:absolute;
   inset:54px 0 0;
   background:linear-gradient(90deg,#ff3300,#ff8400,#df2600);
+  box-shadow:inset 0 22px 36px rgba(255,220,80,.35);
 }
 
 .clean-surface{
   position:absolute;
+  left:0;
+  right:0;
   top:30px;
   height:42px;
-  width:100%;
   background:linear-gradient(#7a858c,#3b4449);
+  box-shadow:inset 0 12px 18px rgba(255,255,255,.08);
 }
 
-/* SCALE */
 .scale{
   position:absolute;
-  background:linear-gradient(#565656,#151515);
+  background:
+    radial-gradient(circle at 14% 32%,#111 0 8px,transparent 9px),
+    radial-gradient(circle at 42% 58%,#3b3b3b 0 10px,transparent 11px),
+    radial-gradient(circle at 73% 28%,#202020 0 9px,transparent 10px),
+    linear-gradient(#565656,#151515);
+  background-size:88px 58px,112px 64px,126px 66px,100% 100%;
+  filter:contrast(1.15);
 }
 
-.thick{left:0;top:-10px;width:720px;height:88px}
-.reduced{left:720px;top:24px;width:520px;height:32px;opacity:.7}
-.final-remnant{left:1240px;top:34px;width:150px;height:22px;opacity:.6}
+.thick{
+  left:0;
+  top:-10px;
+  width:720px;
+  height:88px;
+}
 
-/* WATER */
+.reduced{
+  left:720px;
+  top:24px;
+  width:520px;
+  height:32px;
+  opacity:.76;
+}
+
+.final-remnant{
+  left:1240px;
+  top:34px;
+  width:150px;
+  height:22px;
+  opacity:.58;
+}
+
 .water-zone{
   position:absolute;
   top:114px;
   display:flex;
+  z-index:6;
 }
 
-.rough-zone{left:335px;gap:42px}
-.finish-zone{right:185px;gap:42px}
+.rough-zone{
+  left:335px;
+  gap:42px;
+}
+
+.finish-zone{
+  right:185px;
+  gap:42px;
+}
 
 .water-zone span{
-  width:40px;
-  height:220px;
-  background:linear-gradient(rgba(183,235,255,.2),#50c3ff);
-  animation:sprayPulse .3s infinite alternate;
+  background:linear-gradient(rgba(183,235,255,.08),rgba(80,195,255,.95),rgba(183,235,255,.14));
+  clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
+  filter:drop-shadow(0 0 10px rgba(95,210,255,.9));
+  animation:sprayPulse .28s ease-in-out infinite alternate;
 }
 
-/* CHIPS */
-.chips::before{
+.rough-zone span{
+  width:50px;
+  height:255px;
+}
+
+.finish-zone span{
+  width:34px;
+  height:222px;
+  opacity:.68;
+}
+
+.chips::before,
+.chips::after{
   content:"";
   position:absolute;
-  width:200px;
-  height:100px;
-  background:radial-gradient(circle,#111 0 4px,transparent 5px);
-  animation:chipsFly 1s infinite;
+  background:
+    radial-gradient(circle,#111 0 4px,transparent 5px),
+    radial-gradient(circle,#333 0 5px,transparent 6px),
+    radial-gradient(circle,#080808 0 6px,transparent 7px);
+  background-size:34px 32px,50px 42px,62px 52px;
+  opacity:0;
 }
 
-.rough-chips::before{left:700px}
-.finish-chips::before{left:1250px}
+.rough-chips::before{
+  left:660px;
+  top:-10px;
+  width:420px;
+  height:180px;
+  animation:chipsFlyRough 0.9s ease-out infinite;
+}
 
-/* ARROW */
+.rough-chips::after{
+  left:700px;
+  top:5px;
+  width:380px;
+  height:160px;
+  animation:chipsFlyRough 0.9s ease-out .3s infinite;
+}
+
+.finish-chips::before{
+  left:1225px;
+  top:20px;
+  width:230px;
+  height:115px;
+  animation:chipsFlyFinish 1.15s ease-out infinite;
+}
+
+.finish-chips::after{
+  left:1260px;
+  top:28px;
+  width:180px;
+  height:90px;
+  animation:chipsFlyFinish 1.15s ease-out .5s infinite;
+}
+
 .arrow{
   position:absolute;
   left:58px;
@@ -186,26 +263,33 @@ body{
   color:#ffc934;
   font-size:20px;
   font-weight:900;
+  letter-spacing:.04em;
 }
 
-/* ANIMATIONS */
 @keyframes steelPass{
-  to{transform:translateX(1120px) skewX(-8deg)}
+  0%{transform:translateX(0) skewX(-8deg)}
+  100%{transform:translateX(1120px) skewX(-8deg)}
 }
 
-@keyframes chipsFly{
-  0%{opacity:0;transform:translateY(20px)}
-  50%{opacity:1}
-  100%{opacity:0;transform:translateY(-60px)}
+@keyframes chipsFlyRough{
+  0%{transform:translate(0,32px) rotate(0deg);opacity:0}
+  16%{opacity:1}
+  100%{transform:translate(180px,-112px) rotate(34deg);opacity:0}
+}
+
+@keyframes chipsFlyFinish{
+  0%{transform:translate(0,16px) rotate(0deg);opacity:0}
+  25%{opacity:.85}
+  100%{transform:translate(92px,-62px) rotate(18deg);opacity:0}
 }
 
 @keyframes sprayPulse{
-  from{opacity:.7}
-  to{opacity:1}
+  from{opacity:.68;transform:scaleX(.86)}
+  to{opacity:1;transform:scaleX(1.08)}
 }
 
 @keyframes roll{
-  to{filter:brightness(1.2)}
+  to{filter:brightness(1.22)}
 }
 </style>
 </head>
@@ -214,17 +298,15 @@ body{
 
 <div class="viewport">
   <div class="frame">
-
     <div class="scene">
-
       <div class="title">Descaler process</div>
 
-      <div class="pressure rough">Roughing<br><strong>360 → 240 bar</strong></div>
-      <div class="pressure finish">Finishing<br><strong>240 bar</strong></div>
+      <div class="pressure rough">Roughing mill<br><strong>360 → 240 bar</strong></div>
+      <div class="pressure finish">Finishing mill<br><strong>240 → 240 bar</strong></div>
 
       <div class="stage before">THICK SCALE</div>
-      <div class="stage after-rough">MOST REMOVED</div>
-      <div class="stage final">CLEAN</div>
+      <div class="stage after-rough">MOST SCALE REMOVED</div>
+      <div class="stage final">CLEAN SURFACE</div>
 
       <div class="water-zone rough-zone">
         <span></span><span></span><span></span>
@@ -249,9 +331,7 @@ body{
       </div>
 
       <div class="arrow">STEEL TRAVEL →</div>
-
     </div>
-
   </div>
 </div>
 
