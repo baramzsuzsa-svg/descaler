@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Descaler Process</title>
+<title>Descaling Process</title>
 
 <style>
 *{box-sizing:border-box}
@@ -41,66 +41,154 @@ body{
   overflow:hidden;
   border-radius:24px;
   background:
-    radial-gradient(circle at 43% 22%,rgba(55,125,150,.32),transparent 34%),
+    radial-gradient(circle at 45% 22%,rgba(58,139,170,.34),transparent 36%),
     linear-gradient(#071118,#0d1d26 56%,#06090c);
   box-shadow:0 28px 80px rgba(0,0,0,.45);
   transform:translate(-50%, -50%) scale(0.7);
   transform-origin:center;
 }
 
+/* HEADER */
 .title{
   position:absolute;
-  top:26px;
-  left:34px;
-  font-size:34px;
+  top:24px;
+  left:0;
+  width:100%;
+  text-align:center;
+  font-size:42px;
   font-weight:900;
   color:#ffc934;
   text-transform:uppercase;
-  letter-spacing:.03em;
+  letter-spacing:.04em;
+  z-index:20;
 }
 
+/* PRESSURE BOXES */
 .pressure{
   position:absolute;
-  top:26px;
-  padding:10px 16px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.42);
+  top:92px;
+  width:245px;
+  padding:12px 18px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.52);
   background:linear-gradient(#176180,#0d3349);
-  font-size:15px;
-  font-weight:700;
+  font-size:17px;
+  font-weight:800;
   line-height:1.25;
   text-align:center;
-  box-shadow:0 10px 24px rgba(0,0,0,.25);
-  z-index:10;
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+  z-index:20;
 }
 
 .pressure strong{
-  font-size:20px;
-  color:white;
+  font-size:28px;
+  color:#fff;
 }
 
-.rough{left:345px}
-.finish{right:115px}
+.rough{left:290px}
+.finish{right:120px}
 
+/* STAGE LABELS */
 .stage{
   position:absolute;
-  top:96px;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.13em;
-  opacity:.72;
-  z-index:10;
+  top:178px;
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:.14em;
+  opacity:.85;
+  z-index:20;
+  white-space:nowrap;
 }
 
-.before{left:100px;color:#d6d6d6}
-.after-rough{left:485px;color:#bdeaff}
-.final{right:80px;color:#ffc934}
+.before{
+  left:95px;
+  color:#d6d6d6;
+}
 
+.after-rough{
+  left:510px;
+  transform:translateX(-50%);
+  color:#9ddcff;
+}
+
+.final{
+  right:85px;
+  color:#ffc934;
+}
+
+/* DOTTED GUIDE LINE */
+.guide{
+  position:absolute;
+  left:70px;
+  right:70px;
+  top:205px;
+  border-top:2px dashed rgba(255,255,255,.35);
+  z-index:4;
+}
+
+.dot{
+  position:absolute;
+  top:199px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#cbd5e1;
+  z-index:5;
+}
+
+.dot.d1{left:65px}
+.dot.d2{left:305px}
+.dot.d3{left:525px}
+.dot.d4{right:255px}
+.dot.d5{right:65px}
+
+/* WATER */
+.water-zone{
+  position:absolute;
+  top:215px;
+  display:flex;
+  z-index:12;
+}
+
+.rough-zone{
+  left:305px;
+  gap:52px;
+}
+
+.finish-zone{
+  right:205px;
+  gap:50px;
+}
+
+.water-zone span{
+  background:
+    linear-gradient(
+      rgba(210,245,255,.05),
+      rgba(103,210,255,.95) 50%,
+      rgba(210,245,255,.18)
+    );
+  clip-path:polygon(45% 0,55% 0,100% 100%,0 100%);
+  filter:drop-shadow(0 0 12px rgba(95,210,255,.95));
+  animation:sprayPulse .28s ease-in-out infinite alternate;
+}
+
+.rough-zone span{
+  width:54px;
+  height:235px;
+}
+
+.finish-zone span{
+  width:42px;
+  height:210px;
+  opacity:.75;
+}
+
+/* ROLLERS */
 .rollers{
   position:absolute;
-  left:42px;
-  right:42px;
-  bottom:88px;
+  left:45px;
+  right:45px;
+  bottom:65px;
   display:flex;
   justify-content:space-between;
   z-index:1;
@@ -108,179 +196,168 @@ body{
 
 .rollers i{
   width:126px;
-  height:48px;
-  border-radius:50px;
-  background:radial-gradient(circle at 35% 35%,#aeb7bd,#3a4046 48%,#111417 72%);
-  box-shadow:inset 0 0 12px rgba(255,255,255,.2),0 12px 22px rgba(0,0,0,.55);
+  height:62px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 45%,#e5edf1 0 9%,#8f9aa0 18%,#333b40 47%,#090b0d 74%);
+  box-shadow:
+    inset 0 0 16px rgba(255,255,255,.25),
+    inset 0 -10px 22px rgba(0,0,0,.65),
+    0 12px 22px rgba(0,0,0,.6);
   animation:roll .75s linear infinite;
 }
 
+/* STEEL */
 .steel{
   position:absolute;
   left:-760px;
-  bottom:142px;
+  bottom:146px;
   width:1760px;
-  height:145px;
+  height:150px;
   transform:skewX(-8deg);
   animation:steelPass 9s linear infinite;
-  z-index:2;
+  z-index:8;
 }
 
 .hot-core{
   position:absolute;
-  inset:54px 0 0;
-  background:linear-gradient(90deg,#ff3300,#ff8400,#df2600);
-  box-shadow:inset 0 22px 36px rgba(255,220,80,.35);
+  inset:74px 0 0;
+  background:
+    linear-gradient(90deg,#ff2f00,#ff8a00,#ff3b00),
+    radial-gradient(circle,#ffd15a,transparent);
+  box-shadow:
+    inset 0 18px 34px rgba(255,230,90,.45),
+    0 0 24px rgba(255,90,0,.55);
 }
 
 .clean-surface{
   position:absolute;
   left:0;
   right:0;
-  top:30px;
-  height:42px;
-  background:linear-gradient(#7a858c,#3b4449);
-  box-shadow:inset 0 12px 18px rgba(255,255,255,.08);
+  top:38px;
+  height:48px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.08) 0,
+      rgba(255,255,255,.08) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    linear-gradient(90deg,#5e6870,#b8c4ca,#4b565d);
+  box-shadow:inset 0 12px 18px rgba(255,255,255,.1);
 }
 
 .scale{
   position:absolute;
   background:
-    radial-gradient(circle at 14% 32%,#111 0 8px,transparent 9px),
-    radial-gradient(circle at 42% 58%,#3b3b3b 0 10px,transparent 11px),
-    radial-gradient(circle at 73% 28%,#202020 0 9px,transparent 10px),
-    linear-gradient(#565656,#151515);
-  background-size:88px 58px,112px 64px,126px 66px,100% 100%;
-  filter:contrast(1.15);
+    radial-gradient(circle at 10% 35%,#050505 0 8px,transparent 9px),
+    radial-gradient(circle at 25% 62%,#262626 0 9px,transparent 10px),
+    radial-gradient(circle at 44% 28%,#111 0 7px,transparent 8px),
+    radial-gradient(circle at 69% 52%,#343434 0 10px,transparent 11px),
+    radial-gradient(circle at 88% 36%,#0b0b0b 0 8px,transparent 9px),
+    linear-gradient(#666,#161616);
+  background-size:70px 52px,92px 58px,112px 62px,126px 66px,84px 56px,100% 100%;
+  filter:contrast(1.2);
 }
 
 .thick{
   left:0;
-  top:-10px;
+  top:-4px;
   width:720px;
-  height:88px;
+  height:92px;
 }
 
 .reduced{
   left:720px;
-  top:24px;
+  top:42px;
   width:520px;
-  height:32px;
-  opacity:.76;
+  height:34px;
+  opacity:.72;
 }
 
 .final-remnant{
   left:1240px;
-  top:34px;
-  width:150px;
-  height:22px;
-  opacity:.58;
+  top:50px;
+  width:140px;
+  height:18px;
+  opacity:.48;
 }
 
-.water-zone{
-  position:absolute;
-  top:114px;
-  display:flex;
-  z-index:6;
-}
-
-.rough-zone{
-  left:335px;
-  gap:42px;
-}
-
-.finish-zone{
-  right:185px;
-  gap:42px;
-}
-
-.water-zone span{
-  background:linear-gradient(rgba(183,235,255,.08),rgba(80,195,255,.95),rgba(183,235,255,.14));
-  clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
-  filter:drop-shadow(0 0 10px rgba(95,210,255,.9));
-  animation:sprayPulse .28s ease-in-out infinite alternate;
-}
-
-.rough-zone span{
-  width:50px;
-  height:255px;
-}
-
-.finish-zone span{
-  width:34px;
-  height:222px;
-  opacity:.68;
-}
-
+/* CHIPS / SCALE REMOVAL */
 .chips::before,
 .chips::after{
   content:"";
   position:absolute;
   background:
-    radial-gradient(circle,#111 0 4px,transparent 5px),
-    radial-gradient(circle,#333 0 5px,transparent 6px),
-    radial-gradient(circle,#080808 0 6px,transparent 7px);
-  background-size:34px 32px,50px 42px,62px 52px;
+    radial-gradient(circle,#070707 0 5px,transparent 6px),
+    radial-gradient(circle,#222 0 6px,transparent 7px),
+    radial-gradient(circle,#3a3a3a 0 4px,transparent 5px),
+    radial-gradient(circle,#111 0 8px,transparent 9px);
+  background-size:34px 32px,48px 42px,62px 52px,78px 66px;
   opacity:0;
 }
 
 .rough-chips::before{
-  left:660px;
-  top:-10px;
-  width:420px;
-  height:180px;
+  left:640px;
+  top:10px;
+  width:470px;
+  height:210px;
   animation:chipsFlyRough 0.9s ease-out infinite;
 }
 
 .rough-chips::after{
-  left:700px;
-  top:5px;
-  width:380px;
-  height:160px;
-  animation:chipsFlyRough 0.9s ease-out .3s infinite;
+  left:680px;
+  top:25px;
+  width:430px;
+  height:190px;
+  animation:chipsFlyRough 0.9s ease-out .32s infinite;
 }
 
 .finish-chips::before{
-  left:1225px;
-  top:20px;
-  width:230px;
-  height:115px;
+  left:1220px;
+  top:36px;
+  width:240px;
+  height:120px;
   animation:chipsFlyFinish 1.15s ease-out infinite;
 }
 
 .finish-chips::after{
-  left:1260px;
-  top:28px;
-  width:180px;
-  height:90px;
+  left:1250px;
+  top:44px;
+  width:190px;
+  height:95px;
   animation:chipsFlyFinish 1.15s ease-out .5s infinite;
 }
 
+/* ARROW */
 .arrow{
   position:absolute;
-  left:58px;
-  bottom:34px;
+  left:82px;
+  bottom:22px;
   color:#ffc934;
-  font-size:20px;
+  font-size:24px;
   font-weight:900;
-  letter-spacing:.04em;
+  letter-spacing:.06em;
+  z-index:20;
 }
 
+/* ANIMATIONS */
 @keyframes steelPass{
   0%{transform:translateX(0) skewX(-8deg)}
   100%{transform:translateX(1120px) skewX(-8deg)}
 }
 
 @keyframes chipsFlyRough{
-  0%{transform:translate(0,32px) rotate(0deg);opacity:0}
-  16%{opacity:1}
-  100%{transform:translate(180px,-112px) rotate(34deg);opacity:0}
+  0%{transform:translate(0,36px) rotate(0deg);opacity:0}
+  15%{opacity:1}
+  100%{transform:translate(190px,-125px) rotate(38deg);opacity:0}
 }
 
 @keyframes chipsFlyFinish{
-  0%{transform:translate(0,16px) rotate(0deg);opacity:0}
+  0%{transform:translate(0,18px) rotate(0deg);opacity:0}
   25%{opacity:.85}
-  100%{transform:translate(92px,-62px) rotate(18deg);opacity:0}
+  100%{transform:translate(95px,-66px) rotate(20deg);opacity:0}
 }
 
 @keyframes sprayPulse{
@@ -289,7 +366,7 @@ body{
 }
 
 @keyframes roll{
-  to{filter:brightness(1.22)}
+  to{filter:brightness(1.2)}
 }
 </style>
 </head>
@@ -299,14 +376,29 @@ body{
 <div class="viewport">
   <div class="frame">
     <div class="scene">
-      <div class="title">Descaler process</div>
 
-      <div class="pressure rough">Roughing mill<br><strong>360 → 240 bar</strong></div>
-      <div class="pressure finish">Finishing mill<br><strong>240 → 240 bar</strong></div>
+      <div class="title">Descaling process</div>
+
+      <div class="pressure rough">
+        Roughing mill<br>
+        <strong>360 → 240</strong> bar
+      </div>
+
+      <div class="pressure finish">
+        Finishing mill<br>
+        <strong>240 → 240</strong> bar
+      </div>
 
       <div class="stage before">THICK SCALE</div>
       <div class="stage after-rough">MOST SCALE REMOVED</div>
       <div class="stage final">CLEAN SURFACE</div>
+
+      <div class="guide"></div>
+      <div class="dot d1"></div>
+      <div class="dot d2"></div>
+      <div class="dot d3"></div>
+      <div class="dot d4"></div>
+      <div class="dot d5"></div>
 
       <div class="water-zone rough-zone">
         <span></span><span></span><span></span>
@@ -331,6 +423,7 @@ body{
       </div>
 
       <div class="arrow">STEEL TRAVEL →</div>
+
     </div>
   </div>
 </div>
