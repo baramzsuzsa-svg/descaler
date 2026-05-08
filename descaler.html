@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Descaler Process</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  overflow:hidden;
+  background:#071118;
+  font-family:Arial, Helvetica, sans-serif;
+  color:white;
+}
+
+/* VIEWPORT (responsive container) */
+.viewport{
+  width:100vw;
+  height:100vh;
+  min-height:600px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:#071118;
+  padding:24px;
+}
+
+/* MAIN SCENE */
+.scene{
+  position:relative;
+  width:1120px;
+  height:560px;
+  overflow:hidden;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 43% 22%,rgba(55,125,150,.32),transparent 34%),
+    linear-gradient(#071118,#0d1d26 56%,#06090c);
+  box-shadow:0 28px 80px rgba(0,0,0,.45);
+
+  /* SMART SCALING */
+  transform:scale(
+    min(
+      calc((100vw - 48px) / 1120),
+      calc((100vh - 48px) / 560),
+      1
+    )
+  );
+  transform-origin:center;
+}
+
+/* TITLE */
+.title{
+  position:absolute;
+  top:26px;
+  left:34px;
+  font-size:34px;
+  font-weight:900;
+  color:#ffc934;
+  text-transform:uppercase;
+}
+
+/* PRESSURE BOXES */
+.pressure{
+  position:absolute;
+  top:26px;
+  padding:10px 16px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.4);
+  background:linear-gradient(#176180,#0d3349);
+  font-size:15px;
+  font-weight:700;
+  text-align:center;
+}
+
+.pressure strong{
+  font-size:20px;
+}
+
+.rough{left:345px}
+.finish{right:115px}
+
+/* STAGES */
+.stage{
+  position:absolute;
+  top:96px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.13em;
+  opacity:.7;
+}
+
+.before{left:100px;color:#d6d6d6}
+.after-rough{left:485px;color:#bdeaff}
+.final{right:80px;color:#ffc934}
+
+/* ROLLERS */
+.rollers{
+  position:absolute;
+  left:42px;
+  right:42px;
+  bottom:88px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.rollers i{
+  width:126px;
+  height:48px;
+  border-radius:50px;
+  background:radial-gradient(circle,#aeb7bd,#111417);
+  animation:roll .75s linear infinite;
+}
+
+/* STEEL */
+.steel{
+  position:absolute;
+  left:-760px;
+  bottom:142px;
+  width:1760px;
+  height:145px;
+  transform:skewX(-8deg);
+  animation:steelPass 9s linear infinite;
+}
+
+.hot-core{
+  position:absolute;
+  inset:54px 0 0;
+  background:linear-gradient(90deg,#ff3300,#ff8400,#df2600);
+}
+
+.clean-surface{
+  position:absolute;
+  top:30px;
+  height:42px;
+  width:100%;
+  background:linear-gradient(#7a858c,#3b4449);
+}
+
+/* SCALE */
+.scale{
+  position:absolute;
+  background:linear-gradient(#565656,#151515);
+}
+
+.thick{left:0;top:-10px;width:720px;height:88px}
+.reduced{left:720px;top:24px;width:520px;height:32px;opacity:.7}
+.final-remnant{left:1240px;top:34px;width:150px;height:22px;opacity:.6}
+
+/* WATER */
+.water-zone{
+  position:absolute;
+  top:114px;
+  display:flex;
+}
+
+.rough-zone{left:335px;gap:42px}
+.finish-zone{right:185px;gap:42px}
+
+.water-zone span{
+  width:40px;
+  height:220px;
+  background:linear-gradient(rgba(183,235,255,.2),#50c3ff);
+  animation:sprayPulse .3s infinite alternate;
+}
+
+/* CHIPS */
+.chips::before{
+  content:"";
+  position:absolute;
+  width:200px;
+  height:100px;
+  background:radial-gradient(circle,#111 0 4px,transparent 5px);
+  animation:chipsFly 1s infinite;
+}
+
+.rough-chips::before{left:700px}
+.finish-chips::before{left:1250px}
+
+/* ARROW */
+.arrow{
+  position:absolute;
+  left:58px;
+  bottom:34px;
+  color:#ffc934;
+  font-size:20px;
+  font-weight:900;
+}
+
+/* ANIMATIONS */
+@keyframes steelPass{
+  to{transform:translateX(1120px) skewX(-8deg)}
+}
+
+@keyframes chipsFly{
+  0%{opacity:0;transform:translateY(20px)}
+  50%{opacity:1}
+  100%{opacity:0;transform:translateY(-60px)}
+}
+
+@keyframes sprayPulse{
+  from{opacity:.7}
+  to{opacity:1}
+}
+
+@keyframes roll{
+  to{filter:brightness(1.2)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="viewport">
+  <div class="scene">
+
+    <div class="title">Descaler process</div>
+
+    <div class="pressure rough">Roughing<br><strong>360 → 240 bar</strong></div>
+    <div class="pressure finish">Finishing<br><strong>240 bar</strong></div>
+
+    <div class="stage before">THICK SCALE</div>
+    <div class="stage after-rough">MOST REMOVED</div>
+    <div class="stage final">CLEAN</div>
+
+    <div class="water-zone rough-zone">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="water-zone finish-zone">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="rollers">
+      <i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+
+    <div class="steel">
+      <div class="hot-core"></div>
+      <div class="clean-surface"></div>
+      <div class="scale thick"></div>
+      <div class="scale reduced"></div>
+      <div class="scale final-remnant"></div>
+      <div class="chips rough-chips"></div>
+      <div class="chips finish-chips"></div>
+    </div>
+
+    <div class="arrow">STEEL TRAVEL →</div>
+
+  </div>
+</div>
+
+</body>
+</html>
