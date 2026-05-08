@@ -15,19 +15,17 @@ body{
   color:white;
 }
 
-/* VIEWPORT (responsive container) */
+/* VIEWPORT */
 .viewport{
   width:100vw;
   height:100vh;
-  min-height:600px;
   display:grid;
   place-items:center;
   overflow:hidden;
   background:#071118;
-  padding:24px;
 }
 
-/* MAIN SCENE */
+/* SCENE */
 .scene{
   position:relative;
   width:1120px;
@@ -39,12 +37,11 @@ body{
     linear-gradient(#071118,#0d1d26 56%,#06090c);
   box-shadow:0 28px 80px rgba(0,0,0,.45);
 
-  /* SMART SCALING */
-  transform:scale(
+  /* 🔥 SANA-OPTIMIZED SCALE */
+  transform: scale(
     min(
-      calc((100vw - 48px) / 1120),
-      calc((100vh - 48px) / 560),
-      1
+      calc(100vw / 1120),
+      0.7
     )
   );
   transform-origin:center;
@@ -61,7 +58,7 @@ body{
   text-transform:uppercase;
 }
 
-/* PRESSURE BOXES */
+/* PRESSURE */
 .pressure{
   position:absolute;
   top:26px;
@@ -74,9 +71,7 @@ body{
   text-align:center;
 }
 
-.pressure strong{
-  font-size:20px;
-}
+.pressure strong{font-size:20px}
 
 .rough{left:345px}
 .finish{right:115px}
